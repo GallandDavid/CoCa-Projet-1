@@ -40,3 +40,7 @@ bool check_around(int row, int col, int nb_light){
     if(row < get_nb_square_cols() - 1) if(square[row][col + 1] == LIGHBULB) lights ++;
     return nb_light == lights;
 }
+
+O(verificateur()) O(n*m) + O(2*n + 2*m) + O(4) = O(n³)
+O(check_is_lighted()) (2*n + 2*m)
+O(check_around()) (4)
