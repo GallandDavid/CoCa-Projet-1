@@ -14,6 +14,8 @@
 
 #include "game.h"
 
+struct pos;
+
 /**
  * @brief Checks if all empty cells of @p g are lighted by some light.
  * 

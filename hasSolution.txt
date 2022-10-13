@@ -4,15 +4,15 @@ bool hasSolution(square){
     LPs[blank_cases];
     nb_pos = FindAllPositions(LPs); //Ensemble des position valide pour une lampe
     nb_lights = 1;
-    while(nb_lights <= blank_cases){
+    while(nb_lights <= blank_cases){ O(n)
         LPt[nb_lights];
-        fillTab(LPt); // stock l'indice de nb_lights positions contenues dans LPs (de manière croissante et linéaire)
-        fillSolutionWithTab(solution, LPt, LPs); //remplie la matrice solution en boolean avec le tableaux d'indice des positions
-        if(verificateur(square,solution)) return true;
+  O(n)      fillTab(LPt); // stock l'indice de nb_lights positions contenues dans LPs (de manière croissante et linéaire)
+  O(n)      fillSolutionWithTab(solution, LPt, LPs); //remplie la matrice solution en boolean avec le tableaux d'indice des positions
+  O(n³)      if(verificateur(square,solution)) return true;
         while(nextTry(LPt, nb_light)){ //nextTry(...) choisit un nouveaux jeux de positions en commençant par la dernière, en choisissant les prochaine position (de manière croissante et linéaire), jusqu'à ne plus pouvoir et reprendre en déplaçant celle d'avant. retourn vrai si la fonction trouve un nouveaux jeux, faux si aucune nouvelle position n'est possible pour la première lampe choisit
             fillTab(LPt);
-            fillSolutionWithTab(solution, LPt);
-            if(verificateur(square,solution)) return true;
+  O(?)          fillSolutionWithTab(solution, LPt);
+  O(n³)          if(verificateur(square,solution)) return true;
         }
         nb_lights ++;
     }
