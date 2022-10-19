@@ -261,15 +261,27 @@ bool verifier(game g){
     return true;
 }
 
+void free_pos_tab(int **possibility_tab, int nb_lights){
+    for(int i = 0; i < nb_lights; i++){
+        if(possibility_tab[i] != NULL){
+            free(possibility_tab[i]);
+            possibility_tab[i] = NULL;
+        }
+    }
+    free(possibility_tab);
+}
+
 bool brute_force(game g){
+    
     int blank_cases = nbBlankCases(g); //compte le nombre totale de case vide et le retourne
     pos *LPs = malloc(sizeof(pos) * blank_cases); //index 0 utilisé pour stocker la taille du tableau
     int nb_pos = findAllPositions(g, LPs); //Ensemble des position valide pour une lampe
     LPs = realloc(LPs, sizeof(pos) * nb_pos); //realloc at the better size 
-    int nb_lights = 1;
 
     //LPt[0] = index of next light that need to be place (if 5 light to be placed and 5 placed LPt[0] = 6 but be catch like end and not next light to be placed)
-    int *LPt = malloc(sizeof(int) * 1);
+    int *LPt = malloc(sizeof(int));
+
+    int nb_lights = 1;
 
     //test all amount of light
     while(nb_lights <= nb_pos){
@@ -310,12 +322,3 @@ bool brute_force(game g){
     return false;
 }
 
-void free_poss_tab(int **possibility_tab, int nb_lights){
-    for(int i = 0; i < nb_lights; i++){
-        if(possibility_tab[i] != NULL){
-            free(possibility_tab[i]);
-            possibility_tab[i] = NULL;
-        }
-    }
-    free(possibility_tab);
-}
