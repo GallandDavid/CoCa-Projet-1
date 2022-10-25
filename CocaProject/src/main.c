@@ -161,6 +161,7 @@ int main(int argc, char *argv[])
         Z3_model model;
         start = clock();
         Z3_lbool isSat = solveFormula(ctx, formula, &model);
+        //printf("formula is : %s\n",Z3_ast_to_string(ctx,formula));
         end = clock();
         printf("Formula solved in %g seconds.\n", (double)(end - start) / CLOCKS_PER_SEC);
         switch (isSat)
@@ -173,6 +174,7 @@ int main(int argc, char *argv[])
             break;
         case Z3_L_TRUE:
             printf("Yes, there is a solution\n");
+
             game g_display = game_copy(g);
             applySolutionToGame(ctx, model, g_display);
             if (display_terminal)
